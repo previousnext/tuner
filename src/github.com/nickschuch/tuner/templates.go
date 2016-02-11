@@ -587,7 +587,7 @@ html_errors = On
 ; Example:
 ;error_log = php_errors.log
 ; Log errors to syslog (Event Log on Windows).
-error_log = syslog
+error_log =
 
 ;windows.show_crt_warning
 ; Default value: 0
