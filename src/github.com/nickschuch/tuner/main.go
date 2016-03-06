@@ -47,7 +47,11 @@ func ApacheProcs(m, s int) (int, error) {
 }
 
 func Write(name, tpl string, val int, file string) error {
-	t := template.Must(template.New(tpl).Parse(tpl))
+	fm := template.FuncMap{"divide": func(a, b int) int {
+		return a / b
+	}}
+
+	t := template.Must(template.New(tpl).Funcs(fm).Parse(tpl))
 
 	// Write the contents to memory.
 	buf := new(bytes.Buffer)

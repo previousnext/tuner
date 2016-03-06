@@ -3,8 +3,8 @@ package main
 const (
 	apacheTpl = `<IfModule mpm_prefork_module>
 	StartServers		{{ . }}
-	MinSpareServers		{{ . }}
-	MaxSpareServers		{{ . }}
+	MinSpareServers		{{ divide . 2 }}
+	MaxSpareServers		{{ divide . 2 }}
 	MaxRequestWorkers	{{ . }}
 	MaxConnectionsPerChild  {{ . }}
 </IfModule>
@@ -587,7 +587,7 @@ html_errors = On
 ; Example:
 ;error_log = php_errors.log
 ; Log errors to syslog (Event Log on Windows).
-error_log =
+error_log = syslog
 
 ;windows.show_crt_warning
 ; Default value: 0
