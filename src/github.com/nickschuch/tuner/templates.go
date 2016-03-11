@@ -970,7 +970,8 @@ smtp_port = 25
 
 ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
 ; http://php.net/sendmail-path
-;sendmail_path =
+; The above is a lie, it does not get set.
+sendmail_path=sendmail -t -i
 
 ; Force the addition of the specified parameters to be passed as extra parameters
 ; to the sendmail binary. These parameters will always replace the value of
