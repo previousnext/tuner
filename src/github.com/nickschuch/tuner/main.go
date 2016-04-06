@@ -43,7 +43,7 @@ func main() {
 }
 
 func ApacheProcs(m, s int) (int, error) {
-	return m / s, nil
+	return m / s * 2, nil
 }
 
 func Write(name, tpl string, val int, file string) error {
