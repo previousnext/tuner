@@ -15,19 +15,20 @@ var (
 	apacheConf = kingpin.Flag("apache-conf", "Apache configuration file for max procs").Default("/etc/apache2/mods-enabled/mpm_prefork.conf").OverrideDefaultFromEnvar("TUNER_APACHE_CONF").String()
 	phpConf    = kingpin.Flag("php-conf", "PHP configuration file").Default("/usr/local/etc/php/php.ini").OverrideDefaultFromEnvar("TUNER_PHP_CONF").String()
 	phpMem     = kingpin.Flag("php-memory", "The size of the PHP proccess.").Default("128").OverrideDefaultFromEnvar("TUNER_PHP_MEMORY").Int()
+	multiplier = kingpin.Flag("multiplier", "The multiplier for calculating apache max clients").Default("2").OverrideDefaultFromEnvar("TUNER_MULTIPLIER").Int()
 )
 
 func main() {
 	kingpin.Parse()
 
 	// Compute the total procs.
-	procs, err := ApacheProcs(*memory, *phpMem)
+	procs, err := ApacheProcs(*memory, *phpMem, *multiplier)
 	if err != nil {
 		Exit(err)
 	}
 
 	// Tell the user so we can debug at a later date if required.
-	fmt.Printf("Tuning system to: Memory = %v, PHP = %v, Procs = %v\n", *memory, *phpMem, procs)
+	fmt.Printf("Tuning system to: Memory = %v, PHP = %v, Procs = %v\n, Multiplier = %v\n", *memory, *phpMem, procs, multiplier)
 
 	// Update Apache configuration to use the required procs.
 	err = Write("apache", apacheTpl, procs, *apacheConf)
@@ -42,8 +43,8 @@ func main() {
 	}
 }
 
-func ApacheProcs(m, s int) (int, error) {
-	return m / s, nil
+func ApacheProcs(memory, phpMem, multiplier int) (int, error) {
+	return memory / phpMem * multiplier , nil
 }
 
 func Write(name, tpl string, val int, file string) error {
