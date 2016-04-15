@@ -15,7 +15,7 @@ var (
 	apacheConf = kingpin.Flag("apache-conf", "Apache configuration file for max procs").Default("/etc/apache2/mods-enabled/mpm_prefork.conf").OverrideDefaultFromEnvar("TUNER_APACHE_CONF").String()
 	phpConf    = kingpin.Flag("php-conf", "PHP configuration file").Default("/usr/local/etc/php/php.ini").OverrideDefaultFromEnvar("TUNER_PHP_CONF").String()
 	phpMem     = kingpin.Flag("php-memory", "The size of the PHP proccess.").Default("128").OverrideDefaultFromEnvar("TUNER_PHP_MEMORY").Int()
-	multiplier = kingpin.Flag("multiploer", "The multiplier for calculating apache max clients").Default("2").OverrideDefaultFromEnvar("TUNER_MULTIPLIER").Int()
+	multiplier = kingpin.Flag("multiplier", "The multiplier for calculating apache max clients").Default("2").OverrideDefaultFromEnvar("TUNER_MULTIPLIER").Int()
 )
 
 func main() {
