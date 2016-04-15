@@ -28,7 +28,7 @@ func main() {
 	}
 
 	// Tell the user so we can debug at a later date if required.
-	fmt.Printf("Tuning system to: Memory = %v, PHP = %v, Procs = %v\n", *memory, *phpMem, procs)
+	fmt.Printf("Tuning system to: Memory = %v, PHP = %v, Procs = %v\n, Multiplier = %v\n", *memory, *phpMem, procs, multiplier)
 
 	// Update Apache configuration to use the required procs.
 	err = Write("apache", apacheTpl, procs, *apacheConf)
