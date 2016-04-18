@@ -1,4 +1,4 @@
-package clamd
+package apache
 
 import (
 	"bytes"
@@ -12,7 +12,7 @@ const tpl = `<IfModule mpm_prefork_module>
 	MinSpareServers		{{ divide . 2 }}
 	MaxSpareServers		{{ divide . 2 }}
 	MaxRequestWorkers	{{ . }}
-	MaxConnectionsPerChild  {{ . }}
+	MaxConnectionsPerChild	{{ . }}
 </IfModule>`
 
 type Apache struct {
