@@ -16,9 +16,8 @@ const tpl = `<IfModule mpm_prefork_module>
 </IfModule>`
 
 type Apache struct {
-	max        int
-	proc       int
-	multiplier int
+	max  int
+	proc int
 }
 
 func init() {
@@ -33,13 +32,9 @@ func (a *Apache) Proc(pr int) {
 	a.proc = pr
 }
 
-func (a *Apache) Multiplier(m int) {
-	a.multiplier = m
-}
-
 func (a *Apache) Build() (string, error) {
 	// This is the number of concurrent processes that can be at a given time.
-	maxClients := a.max / a.proc * a.multiplier
+	maxClients := a.max / a.proc
 
 	// We setup the templating with a special "divide" function, that way we can do inline division.
 	fm := template.FuncMap{"divide": func(a, b int) int {

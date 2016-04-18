@@ -10,9 +10,8 @@ import (
 const tpl = `memory_limit = {{ . }}M`
 
 type PHP struct {
-	max        int
-	proc       int
-	multiplier int
+	max  int
+	proc int
 }
 
 func init() {
@@ -25,10 +24,6 @@ func (p *PHP) Max(m int) {
 
 func (p *PHP) Proc(pr int) {
 	p.proc = pr
-}
-
-func (p *PHP) Multiplier(m int) {
-	p.multiplier = m
 }
 
 func (p *PHP) Build() (string, error) {

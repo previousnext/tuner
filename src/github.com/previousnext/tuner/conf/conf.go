@@ -7,7 +7,6 @@ import (
 type Conf interface {
 	Max(int)
 	Proc(int)
-	Multiplier(int)
 	Build() (string, error)
 }
 
@@ -28,14 +27,10 @@ func Register(name string, balancer Conf) error {
 }
 
 // Initializes a new configuration, sets the config and generates a file.
-func Generate(name string, max, proc, multiplier int) (string, error) {
+func Generate(name string, max, proc int) (string, error) {
 	if t, exists := Confs[name]; exists {
-		// Setup our values.
 		t.Max(max)
 		t.Proc(proc)
-		t.Multiplier(multiplier)
-
-		// Build the template.
 		c, err := t.Build()
 		if err != nil {
 			return "", err
