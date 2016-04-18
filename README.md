@@ -45,3 +45,29 @@ $ tuner --conf=apache
 	MaxConnectionsPerChild  48
 </IfModule>
 ```
+
+## Contributing new conf plugins
+
+* Create a new folder with the machine number of your plugin in:
+
+```
+src/github.com/previousnext/tuner/conf/NEW
+```
+
+* Create a `conf.go` file in this directory which adheres to the inferface in:
+
+```
+src/github.com/previousnext/tuner/conf/conf.go
+```
+
+Note: See the PHP conf for a simple example.
+
+* Create a test to ensure the correct values are build in the template.
+
+```
+src/github.com/previousnext/tuner/conf/NEW/conf_test.go
+```
+
+Note: See the PHP conf for a simple example.
+
+* Ensure that the new plugin is added to the `main.go` import statement like the others.
