@@ -4,7 +4,7 @@ Tuner
 Configures system based on 3 variables:
 
 * Max - The maximum amount of memory available
-* Proc - The amount of memory per process
+* Proc - The max memory per process
 * Multiplier - A method of boosting how many procs can be run
 
 ## Usage
@@ -48,7 +48,7 @@ $ tuner --conf=apache
 
 ## Contributing new conf plugins
 
-* Create a new folder with the machine number of your plugin in:
+* Create a new folder with the machine name of your plugin in:
 
 ```
 src/github.com/previousnext/tuner/conf/NEW
@@ -62,7 +62,7 @@ src/github.com/previousnext/tuner/conf/conf.go
 
 Note: See the PHP conf for a simple example.
 
-* Create a test to ensure the correct values are build in the template.
+* Create a test to ensure the correct values are built in the template.
 
 ```
 src/github.com/previousnext/tuner/conf/NEW/conf_test.go
