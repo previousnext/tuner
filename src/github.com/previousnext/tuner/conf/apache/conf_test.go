@@ -11,7 +11,7 @@ const r = `<IfModule mpm_prefork_module>
 	MinSpareServers		16
 	MaxSpareServers		16
 	MaxRequestWorkers	32
-	MaxConnectionsPerChild	32
+	MaxConnectionsPerChild	1024
 </IfModule>`
 
 func TestApacheBuild(t *testing.T) {
