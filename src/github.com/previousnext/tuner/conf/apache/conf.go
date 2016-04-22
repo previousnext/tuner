@@ -12,7 +12,7 @@ const tpl = `<IfModule mpm_prefork_module>
 	MinSpareServers		{{ divide . 2 }}
 	MaxSpareServers		{{ divide . 2 }}
 	MaxRequestWorkers	{{ . }}
-	MaxConnectionsPerChild	{{ . }}
+	MaxConnectionsPerChild	1024
 </IfModule>`
 
 type Apache struct {
