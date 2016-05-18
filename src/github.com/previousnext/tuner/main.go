@@ -9,6 +9,7 @@ import (
 	"github.com/previousnext/tuner/conf"
 	_ "github.com/previousnext/tuner/conf/apache"
 	_ "github.com/previousnext/tuner/conf/php"
+	_ "github.com/previousnext/tuner/conf/passenger"
 )
 
 var (
