@@ -7,9 +7,9 @@ import (
 )
 
 const r = `<IfModule mpm_prefork_module>
-	StartServers		32
-	MinSpareServers		16
-	MaxSpareServers		16
+	StartServers		2
+	MinSpareServers		2
+	MaxSpareServers		2
 	MaxRequestWorkers	32
 	MaxConnectionsPerChild	1024
 </IfModule>`

@@ -14,9 +14,9 @@ Configures system based on 3 variables:
 ```bash
 $ tuner --conf=apache
 <IfModule mpm_prefork_module>
-	StartServers		8
-	MinSpareServers		4
-	MaxSpareServers		4
+	StartServers		2
+	MinSpareServers		2
+	MaxSpareServers		2
 	MaxRequestWorkers	8
 	MaxConnectionsPerChild  8
 </IfModule>
@@ -38,11 +38,11 @@ $ export TUNER_PROC=64
 $ export TUNER_MULTIPLIER=3
 $ tuner --conf=apache
 <IfModule mpm_prefork_module>
-	StartServers		48
-	MinSpareServers		24
-	MaxSpareServers		24
+	StartServers		2
+	MinSpareServers		2
+	MaxSpareServers		2
 	MaxRequestWorkers	48
-	MaxConnectionsPerChild  48
+	MaxConnectionsPerChild  1024
 </IfModule>
 ```
 

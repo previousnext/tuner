@@ -8,9 +8,9 @@ import (
 )
 
 const tpl = `<IfModule mpm_prefork_module>
-	StartServers		{{ . }}
-	MinSpareServers		{{ divide . 2 }}
-	MaxSpareServers		{{ divide . 2 }}
+	StartServers		2
+	MinSpareServers		2
+	MaxSpareServers		2
 	MaxRequestWorkers	{{ . }}
 	MaxConnectionsPerChild	1024
 </IfModule>`
