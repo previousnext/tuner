@@ -44,6 +44,10 @@ $ tuner --conf=apache
 	MaxRequestWorkers	48
 	MaxConnectionsPerChild  1024
 </IfModule>
+
+$ export export TUNER_PROC=128
+$ ./tuner-darwin-amd64 --conf=php
+memory_limit = 128M
 ```
 
 ## Contributing new conf plugins
