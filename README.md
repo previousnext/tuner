@@ -1,26 +1,43 @@
 Tuner
 =====
 
-Configures system based on 3 variables:
+A small configuration management system for updating performance config in dynamic systems.
 
-* Max - The maximum amount of memory available
-* Proc - The max memory per process
-* Multiplier - A method of boosting how many procs can be run
+## What this solves
 
-## Build
+When building Docker containers we locking in a set performance configuration. This means that
+you have to either deploy the container at a set size (CPU/Memory) OR write some "interesting"
+scripts to configure your environment before it boots.
 
+This project goes with the latter, but handles it in a clean way.
+
+Configuraion is handled by environment 3 variables:
+
+* `TUNER_MAX` - The maximum amount of memory available
+* `TUNER_PROC` - The max memory per process
+* `TUNER_MULTIPLIER` - A method of boosting how many procs can be run (over provisioning)
+
+Configuration is them returned via inbuilt templates to Stdout. You then have the option to pipe
+this configuration to a known local on your host (prior to the process booting) eg.
+
+```bash
+$ tuner --conf=apache > /etc/apache2/mods-enabled/tuner.conf
+`` 
+
+## Install
+
+```bash
+$ curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner
+$ chmod +rx /usr/local/bin/tuner
 ```
-git clone git@github.com:previousnext/tuner.git
-cd tuner
-make
-``` 
 
 ## Usage
 
 **Apache**
 
 ```bash
-tuner --conf=apache
+$ tuner --conf=apache
+
 <IfModule mpm_prefork_module>
 	StartServers		2
 	MinSpareServers		2
@@ -33,18 +50,20 @@ tuner --conf=apache
 **PHP**
 
 ```bash
-tuner --conf=php
+$ tuner --conf=php
+
 memory_limit = 128M
 ```
 
 ## Advanced usage
 
 ```bash
-export TUNER_CONF=apache
-export TUNER_MAX=1024
-export TUNER_PROC=64
-export TUNER_MULTIPLIER=3
-tuner --conf=apache
+$ export TUNER_CONF=apache
+$ export TUNER_MAX=1024
+$ export TUNER_PROC=64
+$ export TUNER_MULTIPLIER=3
+$ tuner --conf=apache
+
 <IfModule mpm_prefork_module>
 	StartServers		2
 	MinSpareServers		2
@@ -53,9 +72,10 @@ tuner --conf=apache
 	MaxConnectionsPerChild  1024
 </IfModule>
 
-export export TUNER_PROC=128
-./tuner-darwin-amd64 --conf=php
-memory_limit = 128M
+$ export TUNER_PROC=256
+$ tuner --conf=php
+
+memory_limit = 256M
 ```
 
 ## Contributing new conf plugins
