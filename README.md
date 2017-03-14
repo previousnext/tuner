@@ -22,7 +22,7 @@ this configuration to a known local on your host (prior to the process booting) 
 
 ```bash
 $ tuner --conf=apache > /etc/apache2/mods-enabled/tuner.conf
-`` 
+```
 
 ## Install
 
