@@ -24,6 +24,13 @@ this configuration to a known local on your host (prior to the process booting) 
 $ tuner --conf=apache > /etc/apache2/mods-enabled/tuner.conf
 `` 
 
+## Install
+
+```bash
+$ curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner
+$ chmod +rx /usr/local/bin/tuner
+```
+
 ## Usage
 
 **Apache**
