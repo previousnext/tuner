@@ -7,12 +7,20 @@ Configures system based on 3 variables:
 * Proc - The max memory per process
 * Multiplier - A method of boosting how many procs can be run
 
+## Build
+
+```
+git clone git@github.com:previousnext/tuner.git
+cd tuner
+make
+``` 
+
 ## Usage
 
 **Apache**
 
 ```bash
-$ tuner --conf=apache
+tuner --conf=apache
 <IfModule mpm_prefork_module>
 	StartServers		2
 	MinSpareServers		2
@@ -25,18 +33,18 @@ $ tuner --conf=apache
 **PHP**
 
 ```bash
-$ tuner --conf=php
+tuner --conf=php
 memory_limit = 128M
 ```
 
 ## Advanced usage
 
 ```bash
-$ export TUNER_CONF=apache
-$ export TUNER_MAX=1024
-$ export TUNER_PROC=64
-$ export TUNER_MULTIPLIER=3
-$ tuner --conf=apache
+export TUNER_CONF=apache
+export TUNER_MAX=1024
+export TUNER_PROC=64
+export TUNER_MULTIPLIER=3
+tuner --conf=apache
 <IfModule mpm_prefork_module>
 	StartServers		2
 	MinSpareServers		2
@@ -45,8 +53,8 @@ $ tuner --conf=apache
 	MaxConnectionsPerChild  1024
 </IfModule>
 
-$ export export TUNER_PROC=128
-$ ./tuner-darwin-amd64 --conf=php
+export export TUNER_PROC=128
+./tuner-darwin-amd64 --conf=php
 memory_limit = 128M
 ```
 
