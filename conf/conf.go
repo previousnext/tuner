@@ -6,8 +6,9 @@ import (
 
 // Conf interface
 type Conf interface {
-	Max(int)
-	Proc(int)
+	TotalMemory(int)
+	AvgProc(int)
+	MaxProc(int)
 	Build() (string, error)
 }
 
@@ -29,10 +30,11 @@ func Register(name string, balancer Conf) error {
 }
 
 // Generate initializes a new configuration, sets the config and generates a file.
-func Generate(name string, max, proc int) (string, error) {
+func Generate(name string, memory, avgProc int, maxProc int) (string, error) {
 	if t, exists := Confs[name]; exists {
-		t.Max(max)
-		t.Proc(proc)
+		t.TotalMemory(memory)
+		t.AvgProc(avgProc)
+		t.MaxProc(maxProc)
 		c, err := t.Build()
 		if err != nil {
 			return "", err
@@ -41,5 +43,5 @@ func Generate(name string, max, proc int) (string, error) {
 		return c, nil
 	}
 
-	return "", errors.New("could not find the tpl")
+	return "", errors.New("could not find the template")
 }
