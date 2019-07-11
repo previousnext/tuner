@@ -27,7 +27,7 @@ $ tuner --conf=apache > /etc/apache2/mods-enabled/tuner.conf
 ## Install
 
 ```bash
-$ curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner-linux-amd64 -o /usr/local/bin/tuner
+$ curl -L https://github.com/previousnext/tuner/releases/download/1.0.0/tuner_linux_amd64 -o /usr/local/bin/tuner
 $ chmod +rx /usr/local/bin/tuner
 ```
 
@@ -83,13 +83,13 @@ memory_limit = 256M
 * Create a new folder with the machine name of your plugin in:
 
 ```
-src/github.com/previousnext/tuner/conf/NEW
+conf/NEW
 ```
 
 * Create a `conf.go` file in this directory which adheres to the inferface in:
 
 ```
-src/github.com/previousnext/tuner/conf/conf.go
+conf/conf.go
 ```
 
 Note: See the PHP conf for a simple example.
@@ -97,7 +97,7 @@ Note: See the PHP conf for a simple example.
 * Create a test to ensure the correct values are built in the template.
 
 ```
-src/github.com/previousnext/tuner/conf/NEW/conf_test.go
+conf/NEW/conf_test.go
 ```
 
 Note: See the PHP conf for a simple example.
