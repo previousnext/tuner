@@ -12,8 +12,9 @@ const r = `<IfModule mod_passenger.c>
 
 func TestPassengerBuild(t *testing.T) {
 	p := Passenger{}
-	p.Max(2048)
-	p.Proc(64)
+	p.TotalMemory(2048)
+	p.AvgProc(64)
+	p.MaxProc(128)
 	b, _ := p.Build()
 	assert.Equal(t, r, b, "Generated correct Passenger configuration.")
 }

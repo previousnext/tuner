@@ -16,8 +16,9 @@ const r = `<IfModule mpm_prefork_module>
 
 func TestApacheBuild(t *testing.T) {
 	a := Apache{}
-	a.Max(2048)
-	a.Proc(64)
+	a.TotalMemory(2048)
+	a.AvgProc(64)
+	a.MaxProc(64)
 	b, _ := a.Build()
 	assert.Equal(t, r, b, "Generated correct Apache configuration.")
 }

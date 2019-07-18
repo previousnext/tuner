@@ -13,20 +13,18 @@ import (
 )
 
 var (
-	cliConf       = kingpin.Flag("conf", "The type of configuration file to return").Default("apache").OverrideDefaultFromEnvar("TUNER_CONF").String()
-	cliMax        = kingpin.Flag("max", "Max memory allocated to this instance").Default("512").OverrideDefaultFromEnvar("TUNER_MAX").Int()
-	cliProc       = kingpin.Flag("proc", "The size of the PHP proccess.").Default("128").OverrideDefaultFromEnvar("TUNER_PROC").Int()
-	cliMultiplier = kingpin.Flag("multiplier", "The multiplier for calculating apache max clients").Default("2").OverrideDefaultFromEnvar("TUNER_MULTIPLIER").Int()
+	cliConf    = kingpin.Flag("conf", "The type of configuration file to return").Default("apache").Envar("TUNER_CONF").String()
+	cliMemory  = kingpin.Flag("memory", "Total available memory.").Default("512").Envar("TUNER_MEMORY").Int()
+	cliAvgProc = kingpin.Flag("avg-proc", "The average memory size of a process.").Default("64").Envar("TUNER_AVG_PROC").Int()
+	cliMaxProc = kingpin.Flag("max-proc", "The maximum allowed memory size of a process.").Default("128").Envar("TUNER_MAX_PROC").Int()
 )
 
 func main() {
 	kingpin.Parse()
 
-	// Apply the mupltier here, the configurations should not have a account for this.
-	multiMax := *cliMax * *cliMultiplier
 
 	// Get the configuration object.
-	c, err := conf.Generate(*cliConf, multiMax, *cliProc)
+	c, err := conf.Generate(*cliConf, *cliMemory, *cliAvgProc, *cliMaxProc)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
